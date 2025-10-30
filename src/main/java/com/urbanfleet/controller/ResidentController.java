@@ -53,10 +53,4 @@ public class ResidentController
     }
 
 
-//    @GetMapping("/getByVisitorVehicleRegNum/{vRnum}")
-//    public ResponseEntity<ResidentResponse> getByvRNum(@PathVariable String vRnum)
-//    {
-//        ResidentResponse residentResponse = residentService.getByvRNum(vRnum);
-//        return new ResponseEntity<>(residentResponse, HttpStatus.OK);
-//    }
 }

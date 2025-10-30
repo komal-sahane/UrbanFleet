@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Visitor")
@@ -32,8 +34,26 @@ public class VisitorController
     {
         VisitorResponse visitorResponse=visitorService.getByvRNum(vRnum);
         return new ResponseEntity<>(visitorResponse, HttpStatus.OK);
+    }
 
+    @PatchMapping("/getexitTime/{vRNum}")
+    public ResponseEntity<String> updateExitTime(@PathVariable String vRNum, @RequestBody Map<String, String> body)
+    {
+        String timeoutString = body.get("timeout");
+        LocalDateTime timeout = LocalDateTime.parse(timeoutString);
+        boolean updated = visitorService.updateExitTime(vRNum, timeout);
+
+        if(updated)
+        {
+            return new ResponseEntity<>("ExitTime Updated Succesffully", HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>("Visitor didn't exit", HttpStatus.NOT_FOUND);
+        }
 
     }
+
+
 
 }

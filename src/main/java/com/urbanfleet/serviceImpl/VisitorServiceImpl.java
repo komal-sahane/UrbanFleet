@@ -11,6 +11,9 @@ import com.urbanfleet.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @Service
 public class VisitorServiceImpl implements VisitorService
 {
@@ -69,4 +72,22 @@ public class VisitorServiceImpl implements VisitorService
 
         return visitorResponse;
     }
+
+    @Override
+    public boolean updateExitTime(String vRnum, LocalDateTime timeout)
+    {
+        Optional<Visitor> visitorOpt = visitorRepository.findByvRNum(vRnum);
+
+        if(visitorOpt.isPresent())
+        {
+            Visitor visitor = visitorOpt.get();
+            visitor.setTimeout(timeout);
+            visitor.setActiveVisitor(true);
+            visitorRepository.save(visitor);
+            return true;
+        }
+        return false;
+    }
+
+
 }
