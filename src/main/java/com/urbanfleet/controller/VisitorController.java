@@ -54,6 +54,10 @@ public class VisitorController
 
     }
 
-
-
+    @GetMapping("/getVisitorType/{VisitorType}")
+    public ResponseEntity<List<Visitor>> getVisitorType(@RequestParam(required = false) List<String> types)
+    {
+        List<Visitor> visitor = visitorService.getVisitorType(types);
+        return new ResponseEntity<>(visitor, HttpStatus.OK);
+    }
 }

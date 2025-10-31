@@ -1,9 +1,7 @@
 package com.urbanfleet.serviceImpl;
 
-import com.urbanfleet.dto.ResidentResponse;
 import com.urbanfleet.dto.VisitorRequest;
 import com.urbanfleet.dto.VisitorResponse;
-import com.urbanfleet.model.Resident;
 import com.urbanfleet.model.Visitor;
 import com.urbanfleet.repository.ResidentRepository;
 import com.urbanfleet.repository.VisitorRepository;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -87,6 +86,21 @@ public class VisitorServiceImpl implements VisitorService
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Visitor> getVisitorType(List<String> types)
+    {
+        if(types == null || types.isEmpty())
+        {
+            return visitorRepository.findAll();
+        }
+        else
+        {
+            return visitorRepository.findByvisitortypeIn(types);
+        }
+
+
     }
 
 
