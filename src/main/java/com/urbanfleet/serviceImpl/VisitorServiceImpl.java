@@ -91,8 +91,7 @@ public class VisitorServiceImpl implements VisitorService
     @Override
     public List<Visitor> getVisitorType(List<String> types)
     {
-        if(types == null || types.isEmpty())
-        {
+        if(types == null || types.isEmpty()) {
             return visitorRepository.findAll();
         }
         else
