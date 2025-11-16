@@ -9,6 +9,7 @@ import com.urbanfleet.repository.ResidentRepository;
 import com.urbanfleet.repository.VehicleRepository;
 import com.urbanfleet.repository.VisitorRepository;
 import com.urbanfleet.service.ResidentService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+
 public class ResidentServiceImpl implements ResidentService
 {
     @Autowired
